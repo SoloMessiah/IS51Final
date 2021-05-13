@@ -19,7 +19,7 @@ First function
 calculate_percent_above_average()
     Set count = 0
     Use for loop to compare score in total_grades
-        if score > average
+        if score > average_grade
             increase count by 1
     return (count * 100) / len(total_grades)
 
@@ -31,10 +31,10 @@ main()
     print(Number of grades)
 
 Calculate average grade next, still within main()
-    Start average off at 0
+    Start average_grade off at 0
     for score in total_grades
-        average += score
-    average /= len(total_grades)
+        average_grade += score
+    average_grade /= len(total_grades)
 
     print(Average grade)
     print(Percentage of grades above average)
@@ -43,3 +43,37 @@ Calculate average grade next, still within main()
 
 main()
 """
+
+
+
+
+
+def calculate_percent_above_average(total_grades, average_grade):
+    count = 0
+
+    for score in total_grades:
+        if score > average_grade:
+            count += 1
+    return (count * 100) / len(total_grades)
+
+
+def main():
+    open_final_txt = open("Final.txt")
+    total_grades = []
+
+    for line in open_final_txt:
+        total_grades.append(int(line.strip()))
+    
+    print("Number of grades:", len(total_grades))
+
+    average_grade = 0
+    for score in total_grades:
+        average_grade += score
+    average_grade /= len(total_grades)
+
+    print("Average grade:", average_grade)
+    print("Percentage of grades above average:", round(calculate_percent_above_average(total_grades, average_grade),2),"%")
+
+    open_final_txt.close()
+
+main()
